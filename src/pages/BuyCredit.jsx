@@ -21,7 +21,7 @@ const BuyCredit = () => {
          <p className='mt-3 mb-1 font-semibold'>{item.id}</p>
          <p className='text-sm'>{item.desc}</p>
          <p className='mt-6'>
-          <span>${item.price}</span>/{item.credits} credits</p>
+          <span>₹{item.price}</span>/{item.credits} credits</p>
           <button className='w-full bg-gray-800 text-white mt-8 
           text-sm rounded-md py-2 min-w-50'>{user ? 'Purchase' :'Get'}</button>
         </div>

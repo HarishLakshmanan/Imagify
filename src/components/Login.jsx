@@ -6,14 +6,14 @@ import { toast } from 'react-toastify'
 
 const Login = () => {
 
-    const [state,setState]=useState('LogIn')
+    const [state,setState]=useState('Login')
     const {setShowLogin,backendUrl,setToken,setUser}=useContext(AppContext)
 
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-    const onSubmitHandler=async(e)=>{
+    const onSubmitHandler=async (e) =>{
       e.preventDefault();
 
 
@@ -23,9 +23,9 @@ const Login = () => {
             {email,password})
 
             if(data.success){
+               localStorage.setItem('token',data.token)
                setToken(data.token)
                setUser(data.user)
-               localStorage.getItem('token',data.token)
                setShowLogin(false)
             }else{
              toast.error(data.message) 
@@ -35,9 +35,9 @@ const Login = () => {
             {name,email,password})
 
             if(data.success){
+               localStorage.setItem('token',data.token)
                setToken(data.token)
                setUser(data.user)
-               localStorage.getItem('token',data.token)
                setShowLogin(false)
             }else{
              toast.error(data.message) 
@@ -67,7 +67,7 @@ const Login = () => {
         '>{state}</h1>
         <p className='text-sm'>Welcome back! please sign in to continue</p>
 
-        { state !=='LogIn' && <div className='border px-5 py-2 flex items-center gap-2
+        { state !=='Login' && <div className='border px-5 py-2 flex items-center gap-2
         rounded-ful mt-5'>
             <img src={assets.profile_icon} alt=""  className='w-5'/>
             <input onChange={e=>setName(e.target.value)} value={name} 
@@ -93,15 +93,15 @@ const Login = () => {
 
         <p className='text-sm text-blue-600 my-4 cursor-pointer '>Forgot password</p>
         <button className='bg-blue-600 text-white rounded-full w-full py-2'>
-          {state === 'LogIn' ? 'LogIn' : 'Create account'}</button>
+          {state === 'Login' ? 'Login' : 'Create account'}</button>
 
-       {state === 'LogIn'? <p className='text-center mt-5'>Don't have an account?
+       {state === 'Login'? <p className='text-center mt-5'>Don't have an account?
         <span className='text-blue-600 cursor-pointer' onClick={()=>setState('Sign Up')}>
           Sign up</span></p>
          :
         <p className='text-center mt-5'>Already have an account?
-        <span className='text-blue-600 cursor-pointer'onClick={()=>setState('LogIn')}>
-          Log In</span></p>}
+        <span className='text-blue-600 cursor-pointer'onClick={()=>setState('Login')}>
+          Login</span></p>}
         
         <img onClick={()=>setShowLogin(false)}  src={assets.cross_icon} alt=""className='absolute top-5 
         right-5 cursor-pointer' />
