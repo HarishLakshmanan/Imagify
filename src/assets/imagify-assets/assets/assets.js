@@ -83,7 +83,7 @@ export const plans = [
     {
       id: 'Basic',
       price: 10,
-      credits: 100,
+      credits: 50,
       desc: 'Best for personal use.'
     },
     {
