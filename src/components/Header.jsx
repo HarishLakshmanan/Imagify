@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const Header = () => {
    
    const {user,setShowLogin}=useContext(AppContext)
-   const navigate=useNavigate
+   const navigate=useNavigate()
 
    const onClickHandler=()=>{
     if(user){
@@ -19,7 +19,7 @@ const Header = () => {
 
 
   return (
-    <div div className='flex flex-col justify-center items-center text-center my-20'>
+    <div className='flex flex-col justify-center items-center text-center my-20'>
         <div className='text-stone-500 inline-flex text-center gap-2 bg-white
         px-4 py-1 rounded-full border border-neutral-500'>
       <p>Best text to image generator</p>
@@ -37,7 +37,7 @@ const Header = () => {
         onClick={onClickHandler}> Generate images 
             <img className="h-6" src={assets.star_group} alt=''/>
         </button>
-
+        
         <div className='flex flex-wrap justify-center mt-16 gap-3'>
             {Array(6).fill('').map((item,index)=>(
                 <img className='rounded hover:scale-105 transition-all
