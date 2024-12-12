@@ -8,13 +8,13 @@ import axios from 'axios'
 
 const BuyCredit = () => {
 
-  const {user,backendUrl,locaCreditsData,token,setShowLogin}
+  const {user,backendUrl,loadCreditsData,token,setShowLogin}
   =useContext(AppContext)
 
   const navigate=useNavigate()
 
   const initPay= async(order)=>{
-     const option ={
+     const options ={
       key:import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount:order.amount,
       currency:order.currency,
@@ -23,11 +23,22 @@ const BuyCredit = () => {
       order_id:order.id,
       receipt:order.receipt,
       handler:async(response)=>{
-        console.log(response);
+       try {
+        const {data} = await axios.post(backendUrl+'/api/user/verify-razor',
+          response,{headers:{token}})
+
+          if(data.success){
+            loadCreditsData();
+            navigate('/')
+            toast.success('Credit Added')
+          }
+       } catch (error) {
+        toast.error(error.message)
+       }
         
       }
      }
-     const rzp = new window.Razorpay(option)
+     const rzp = new window.Razorpay(options)
      rzp.open()
   }
 
@@ -79,3 +90,4 @@ const BuyCredit = () => {
 }
 
 export default BuyCredit
+
