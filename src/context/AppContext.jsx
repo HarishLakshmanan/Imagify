@@ -14,6 +14,9 @@ const AppContextProvider = (props)=>{
 
 
 
+
+
+
     const backendUrl=import.meta.env.VITE_BACKEND_URL
 
     const localCreditData=async ()=>{
@@ -55,6 +58,7 @@ const AppContextProvider = (props)=>{
         localStorage.removeItem('token');
         setToken('')
         setUser(null)
+        navigate('/')
     }
 
     useEffect(()=>{
