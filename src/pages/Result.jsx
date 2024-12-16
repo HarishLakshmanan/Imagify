@@ -34,7 +34,7 @@ function Result() {
         <span className={`absolute bottom-0 left-0 h-1 bg-blue-500
         ${loading ? 'w-full transition-all duration-[10s]':'w-0'}`}/>
       </div>
-      <p className={!loading ?'hidden':''}>Loading......</p>
+      <p className={!loading ?'hidden':''}>Loading.....</p>
     </div>
 
 
